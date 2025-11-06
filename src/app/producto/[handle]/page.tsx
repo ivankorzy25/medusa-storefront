@@ -1,6 +1,10 @@
 import { notFound } from "next/navigation"
 import { Metadata } from "next"
 import { ProductGallery, ProductInfo, ProductTabs } from "@/components/products"
+import { ImageCarousel } from "@/components/products/ImageCarousel"
+import { ProductInfoTabs } from "@/components/products/ProductInfoTabs"
+import { PriceDisplay } from "@/components/products/PriceDisplay"
+import { ScrollHijackingContainer } from "@/components/products/ScrollHijackingContainer"
 import { getProductByHandle as fetchProductByHandle, getVariantPrice } from "@/lib/medusa-client"
 
 // Fetch product from Medusa API
@@ -49,6 +53,11 @@ async function getProductByHandle(handle: string) {
       id: img.id || String(index),
       url: img.url || "",
       alt: img.metadata?.alt || `${product.title} - Imagen ${index + 1}`,
+    })),
+    variants: (product.variants || []).map((variant: any) => ({
+      id: variant.id,
+      title: variant.title || product.title,
+      sku: variant.sku || "",
     })),
   }
 }
@@ -198,20 +207,20 @@ export default async function ProductPage({
   const documents = await getProductDocuments(product.id)
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#EDEDED]">
       {/* Breadcrumbs */}
-      <div className="border-b bg-gray-50">
-        <div className="container mx-auto px-4 py-3">
+      <div className="bg-white border-b border-gray-200">
+        <div className="max-w-[1200px] mx-auto px-4 py-3">
           <nav className="flex items-center gap-2 text-sm text-gray-600">
-            <a href="/" className="hover:text-blue-600">
+            <a href="/" className="hover:text-blue-600 hover:underline">
               Inicio
             </a>
-            <span>/</span>
-            <a href="/productos" className="hover:text-blue-600">
+            <span className="text-gray-400">›</span>
+            <a href="/productos" className="hover:text-blue-600 hover:underline">
               Productos
             </a>
-            <span>/</span>
-            <span className="text-gray-900 font-medium truncate">
+            <span className="text-gray-400">›</span>
+            <span className="text-gray-700 truncate">
               {product.title}
             </span>
           </nav>
@@ -219,28 +228,162 @@ export default async function ProductPage({
       </div>
 
       {/* Product Content */}
-      <div className="container mx-auto px-4 py-8">
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 mb-12">
-          {/* Left Column - Gallery */}
-          <div>
-            <ProductGallery images={product.images} productTitle={product.title} />
-          </div>
+      <div className="max-w-[1200px] mx-auto px-4 py-6">
+        <div className="bg-white rounded p-6 mb-6">
+          <ScrollHijackingContainer
+            imageContent={
+              <ImageCarousel
+                images={product.images.map(img => ({
+                  id: img.id,
+                  url: img.url,
+                  rank: 0
+                }))}
+                title={product.title}
+              />
+            }
+            centerContent={
+              <div className="space-y-4">
+                {/* Badges destacados */}
+                <div className="flex flex-wrap gap-2 items-center">
+                  <span className="bg-[#3483FA] text-white text-xs font-semibold px-3 py-1 rounded">
+                    ⚡ MOTOR DIESEL
+                  </span>
+                  {product.metadata.potencia_prime_kva && product.metadata.potencia_prime_kva >= 100 && (
+                    <span className="bg-[#00A650] text-white text-xs font-semibold px-3 py-1 rounded">
+                      🏭 USO INDUSTRIAL
+                    </span>
+                  )}
+                  {product.metadata.motor_marca === "Cummins" && (
+                    <span className="bg-[#FF6B00] text-white text-xs font-semibold px-3 py-1 rounded">
+                      ⭐ MARCA PREMIUM
+                    </span>
+                  )}
+                </div>
 
-          {/* Right Column - Info */}
-          <div>
-            <ProductInfo
-              title={product.title}
-              sku={product.sku}
-              description={product.description}
-              metadata={product.metadata}
-              priceWithoutTax={product.priceWithoutTax}
-              priceWithTax={product.priceWithTax}
-            />
-          </div>
+                <div>
+                  <p className="text-sm text-gray-500 mb-2">Nuevo</p>
+                  <h1 className="text-2xl font-bold text-[#333333] leading-tight mb-4">
+                    {product.title}
+                  </h1>
+
+                  {/* Score del producto */}
+                  <div className="flex items-center gap-3 mb-3">
+                    {(() => {
+                      let score = 5.0;
+                      const reasons = [];
+
+                      // Restar puntos por características faltantes
+                      if (!product.metadata.alternador_marca?.toLowerCase().includes('stamford') &&
+                          !product.metadata.alternador_marca?.toLowerCase().includes('leroy')) {
+                        score -= 0.5;
+                        reasons.push("Alternador estándar");
+                      }
+
+                      // Sin cabina acústica
+                      if (!product.description?.toLowerCase().includes('cabina') &&
+                          !product.title.toLowerCase().includes('cabinado')) {
+                        score -= 0.5;
+                        reasons.push("Sin cabina acústica");
+                      }
+
+                      // No es a gas (combustible alternativo)
+                      if (!product.description?.toLowerCase().includes('gas') &&
+                          !product.title.toLowerCase().includes('gas')) {
+                        score -= 0.3;
+                        reasons.push("Solo diesel");
+                      }
+
+                      // Sin TTA incluido
+                      if (!product.description?.toLowerCase().includes('tta incluido') &&
+                          !product.description?.toLowerCase().includes('transferencia automática incluida')) {
+                        score -= 0.5;
+                        reasons.push("TTA no incluido");
+                      }
+
+                      // Bonificaciones
+                      if (product.metadata.motor_marca === "Cummins" ||
+                          product.metadata.motor_marca === "Perkins") {
+                        score += 0.3;
+                      }
+
+                      if (product.metadata.alternador_marca?.toLowerCase().includes('stamford')) {
+                        score += 0.2;
+                      }
+
+                      score = Math.max(3.5, Math.min(5.0, score));
+                      const stars = Math.floor(score);
+                      const hasHalf = score % 1 >= 0.5;
+
+                      return (
+                        <>
+                          <div className="flex items-center gap-1">
+                            <span className="text-base font-semibold text-gray-900">{score.toFixed(1)}</span>
+                            <div className="flex text-yellow-400">
+                              {[...Array(stars)].map((_, i) => (
+                                <span key={i}>★</span>
+                              ))}
+                              {hasHalf && <span>☆</span>}
+                            </div>
+                          </div>
+                          <span className="text-xs text-gray-600">
+                            {reasons.length > 0 ? `(${reasons.slice(0, 2).join(", ")})` : "(Configuración completa)"}
+                          </span>
+                        </>
+                      );
+                    })()}
+                  </div>
+                </div>
+
+                {/* Características destacadas */}
+                <div className="space-y-3">
+                  <h2 className="text-base font-bold text-gray-900">Lo que tenés que saber de este producto</h2>
+                  <ul className="space-y-2 text-sm text-gray-700">
+                    {product.metadata.motor_marca && product.metadata.motor_modelo && (
+                      <li>• Motor {product.metadata.motor_marca} {product.metadata.motor_modelo}</li>
+                    )}
+                    {product.metadata.potencia_prime_kva && (
+                      <li>• Potencia Prime: {product.metadata.potencia_prime_kva} KVA</li>
+                    )}
+                    {product.metadata.potencia_standby_kva && (
+                      <li>• Potencia Stand-By: {product.metadata.potencia_standby_kva} KVA</li>
+                    )}
+                    {product.metadata.tipo_refrigeracion && (
+                      <li>• Refrigeración: {product.metadata.tipo_refrigeracion}</li>
+                    )}
+                    {product.metadata.alternador_marca && (
+                      <li>• Alternador {product.metadata.alternador_marca}</li>
+                    )}
+                    {product.metadata.voltaje_salida && (
+                      <li>• Voltaje: {product.metadata.voltaje_salida}</li>
+                    )}
+                  </ul>
+                </div>
+
+                <div className="pt-4 border-t border-gray-200">
+                  <p className="text-xs text-gray-600">SKU: {product.sku}</p>
+                </div>
+              </div>
+            }
+            rightContent={
+              <PriceDisplay
+                productId={product.id}
+                priceUSD={product.priceWithoutTax}
+              />
+            }
+          />
         </div>
 
-        {/* Tabs Section */}
-        <div className="max-w-6xl mx-auto">
+        {/* Product Information Tabs */}
+        <div className="bg-white rounded p-6 mb-6">
+          <ProductInfoTabs
+            description={product.description}
+            metadata={product.metadata}
+            variants={product.variants}
+          />
+        </div>
+
+        {/* Document Tabs Section */}
+        <div className="bg-white rounded p-6">
           <ProductTabs documents={documents} />
         </div>
       </div>
