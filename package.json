@@ -6,7 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "backup": "bash scripts/backup/auto-backup.sh",
+    "backup:watch": "bash scripts/backup/auto-watcher.sh",
+    "setup": "bash scripts/backup/setup-from-github.sh"
   },
   "dependencies": {
     "@medusajs/js-sdk": "^2.11.2",
