@@ -188,60 +188,30 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
 
           {/* Precios Mayoristas (si hay bonificación/descuento configurados) */}
           {(bonificacion > 0 || descuentoContado > 0) && (
-            <div className="pt-4 border-t border-gray-200 space-y-3">
+            <div className="pt-4 border-t border-gray-200">
               <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
                 <div className="flex items-center gap-2 mb-2">
                   <Info className="w-4 h-4 text-blue-600" />
-                  <p className="text-xs font-semibold text-blue-900">Precios Mayoristas</p>
+                  <p className="text-sm font-semibold text-blue-900">¿Comprás para reventa?</p>
                 </div>
-                <p className="text-xs text-blue-700 mb-3">
-                  ¿Sos distribuidor o comprás en volumen? Tenemos precios especiales
+                <p className="text-sm text-blue-700 mb-3">
+                  Tenemos precios especiales para distribuidores y mayoristas
                 </p>
-
-                {/* Precio Contado */}
-                {descuentoContado > 0 && (
-                  <div className="bg-white rounded p-2 mb-2">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-xs font-medium text-gray-700">Precio Contado</p>
-                        <p className="text-xs text-gray-500">{data.escenarios.mayorista_contado.descripcion}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-lg font-semibold text-green-700">
-                          ${formatPriceNumber(data.escenarios.mayorista_contado.con_iva)}
-                        </p>
-                        <p className="text-xs text-green-600">
-                          {data.escenarios.mayorista_contado.descuento_total}% OFF
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                {/* Precio Financiado */}
-                {bonificacion > 0 && (
-                  <div className="bg-white rounded p-2">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <p className="text-xs font-medium text-gray-700">Precio Financiado</p>
-                        <p className="text-xs text-gray-500">{data.escenarios.mayorista_financiado.descripcion}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-lg font-semibold text-blue-700">
-                          ${formatPriceNumber(data.escenarios.mayorista_financiado.con_iva)}
-                        </p>
-                        <p className="text-xs text-blue-600">
-                          {data.escenarios.mayorista_financiado.descuento_total}% OFF
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="mt-2 pt-2 border-t border-blue-200">
-                  <p className="text-xs text-blue-700 italic">
-                    📞 Contactanos para acceder a estos precios
+                <div className="bg-white rounded p-3">
+                  <p className="text-sm text-gray-700 mb-2">
+                    ✓ Bonificaciones por volumen
                   </p>
+                  <p className="text-sm text-gray-700 mb-2">
+                    ✓ Descuentos por pago contado
+                  </p>
+                  <p className="text-sm text-gray-700">
+                    ✓ Financiación disponible
+                  </p>
+                </div>
+                <div className="mt-3 pt-3 border-t border-blue-200">
+                  <button className="w-full bg-blue-600 hover:bg-blue-700 text-white font-medium py-2 px-4 rounded text-sm transition-colors">
+                    📞 Contactar para precios mayoristas
+                  </button>
                 </div>
               </div>
             </div>
