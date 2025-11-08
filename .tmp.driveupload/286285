@@ -1,8 +1,5 @@
-🔄 Update region ID to EUR in Medusa client
+✅ Fix region_id - CS200A funcionando correctamente
 
-- Changed DEFAULT_REGION_ID from USD to EUR region
-- Auto-backup: 2025-11-07 22:06:54
-
-🤖 Generated with [Claude Code](https://claude.com/claude-code)
-
-Co-Authored-By: Claude <noreply@anthropic.com>
+- Corregido DEFAULT_REGION_ID a región existente en Medusa
+- Producto CS200A ahora carga sin errores 404
+- Sistema estable y listo para configurar precios

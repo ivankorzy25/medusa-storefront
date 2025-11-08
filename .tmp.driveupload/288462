@@ -9,3 +9,4 @@ c568c8764532dc86553f23c8c2a547d3b4849880 90b85cd3c4da4ddf3d0962d4fe6d223afdfdf64
 c568c8764532dc86553f23c8c2a547d3b4849880 5b85eb7eb99e26e64bf069b3c7be412c206b67d4 Ivan Korzyniewski <ivankorzy25@github.com> 1762563962 -0300	commit: 🔄 Update region ID to EUR in Medusa client
 5b85eb7eb99e26e64bf069b3c7be412c206b67d4 8c75c52545bbbacafbe673864589c372ecf629c1 Ivan Korzyniewski <ivankorzy25@github.com> 1762563996 -0300	reset: moving to 8c75c52
 8c75c52545bbbacafbe673864589c372ecf629c1 6e412eed39ba119ab9b9429e5f1144c93d4926a4 Ivan Korzyniewski <ivankorzy25@github.com> 1762564014 -0300	commit: 🔄 Update region ID to EUR in Medusa client
+6e412eed39ba119ab9b9429e5f1144c93d4926a4 083a4fb5d344d3aadfc0fc50bf8f04f71d74f731 Ivan Korzyniewski <ivankorzy25@github.com> 1762565209 -0300	commit: ✅ Fix region_id - CS200A funcionando correctamente
