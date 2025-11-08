@@ -49,8 +49,8 @@ BEGIN
 
   -- Asignar categoría de potencia (100-200 KVA)
   -- Medusa asigna automáticamente todas las categorías padre
-  INSERT INTO product_category_product (product_category_id, product_id, created_at, updated_at)
-  VALUES ('pcat_gen_diesel_100_200', v_product_id, NOW(), NOW());
+  INSERT INTO product_category_product (product_category_id, product_id)
+  VALUES ('pcat_gen_diesel_100_200', v_product_id);
 
   RAISE NOTICE '✅ Categoría asignada: 100 a 200 KVA';
 
@@ -61,32 +61,32 @@ BEGIN
   DELETE FROM product_tags WHERE product_id = v_product_id;
 
   -- Asignar tags específicos del CS200A
-  INSERT INTO product_tags (product_id, product_tag_id, created_at, updated_at)
+  INSERT INTO product_tags (product_id, product_tag_id)
   VALUES
     -- Combustible y motor
-    (v_product_id, 'ptag_diesel', NOW(), NOW()),
-    (v_product_id, 'ptag_cummins', NOW(), NOW()),
+    (v_product_id, 'ptag_diesel'),
+    (v_product_id, 'ptag_cummins'),
 
     -- Aplicación
-    (v_product_id, 'ptag_industrial', NOW(), NOW()),
-    (v_product_id, 'ptag_estacionario', NOW(), NOW()),
+    (v_product_id, 'ptag_industrial'),
+    (v_product_id, 'ptag_estacionario'),
 
     -- Características
-    (v_product_id, 'ptag_automatico', NOW(), NOW()),
-    (v_product_id, 'ptag_insonorizado', NOW(), NOW()),
+    (v_product_id, 'ptag_automatico'),
+    (v_product_id, 'ptag_insonorizado'),
 
     -- Configuración eléctrica
-    (v_product_id, 'ptag_trifasico', NOW(), NOW()),
+    (v_product_id, 'ptag_trifasico'),
 
     -- Modo de operación
-    (v_product_id, 'ptag_standby', NOW(), NOW()),
-    (v_product_id, 'ptag_prime', NOW(), NOW()),
+    (v_product_id, 'ptag_standby'),
+    (v_product_id, 'ptag_prime'),
 
     -- Marca alternador
-    (v_product_id, 'ptag_stamford', NOW(), NOW()),
+    (v_product_id, 'ptag_stamford'),
 
     -- Rango de potencia
-    (v_product_id, 'ptag_100200kva', NOW(), NOW())
+    (v_product_id, 'ptag_100200kva')
   ON CONFLICT DO NOTHING;
 
   RAISE NOTICE '✅ Tags asignados: 11 tags en total';
