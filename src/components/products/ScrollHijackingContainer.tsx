@@ -16,8 +16,34 @@ export function ScrollHijackingContainer({
   const containerRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
+  const scrollVelocity = useRef(0);
+  const animationFrameId = useRef<number | null>(null);
 
   useEffect(() => {
+    let lastScrollTime = Date.now();
+    let targetScroll = 0;
+
+    const smoothScroll = () => {
+      if (!contentRef.current) return;
+
+      const contentContainer = contentRef.current;
+      const currentScroll = contentContainer.scrollTop;
+      const diff = targetScroll - currentScroll;
+
+      if (Math.abs(diff) > 0.5) {
+        // Easing con momentum (ease-out)
+        const delta = diff * 0.15; // Factor de suavizado más agresivo
+        contentContainer.scrollTop += delta;
+
+        // Continuar la animación
+        animationFrameId.current = requestAnimationFrame(smoothScroll);
+      } else {
+        // Fijar posición final
+        contentContainer.scrollTop = targetScroll;
+        animationFrameId.current = null;
+      }
+    };
+
     const handleWheel = (e: WheelEvent) => {
       if (!contentRef.current) return;
 
@@ -26,17 +52,28 @@ export function ScrollHijackingContainer({
 
       if (!hasScrollableContent) return;
 
-      const isAtTop = contentContainer.scrollTop <= 0;
-      const isAtBottom = contentContainer.scrollTop + contentContainer.clientHeight >= contentContainer.scrollHeight - 1;
+      e.preventDefault();
 
-      // Interceptar scroll solo si el contenedor tiene contenido scrolleable
-      // y no estamos en los límites intentando seguir en esa dirección
-      if ((e.deltaY > 0 && !isAtBottom) || (e.deltaY < 0 && !isAtTop)) {
-        e.preventDefault();
+      const now = Date.now();
+      const timeDelta = now - lastScrollTime;
+      lastScrollTime = now;
 
-        // Scroll suave con easing
-        const scrollAmount = e.deltaY * 0.8; // Factor de suavizado
-        contentContainer.scrollTop += scrollAmount;
+      // Calcular velocidad basada en deltaY y tiempo
+      const speedMultiplier = Math.min(timeDelta / 16, 2); // Normalizar a ~60fps
+      const scrollAmount = e.deltaY * speedMultiplier;
+
+      // Actualizar target scroll con límites
+      targetScroll = Math.max(
+        0,
+        Math.min(
+          contentContainer.scrollHeight - contentContainer.clientHeight,
+          targetScroll + scrollAmount
+        )
+      );
+
+      // Iniciar animación suave si no está corriendo
+      if (animationFrameId.current === null) {
+        animationFrameId.current = requestAnimationFrame(smoothScroll);
       }
     };
 
@@ -48,6 +85,9 @@ export function ScrollHijackingContainer({
     return () => {
       if (container) {
         container.removeEventListener("wheel", handleWheel);
+      }
+      if (animationFrameId.current !== null) {
+        cancelAnimationFrame(animationFrameId.current);
       }
     };
   }, []);
@@ -68,14 +108,11 @@ export function ScrollHijackingContainer({
         {/* Right Side - Scrollable content container */}
         <div
           ref={contentRef}
-          className="overflow-y-auto flex-shrink-0"
+          className="overflow-y-auto flex-shrink-0 scrollbar-hide"
           style={{
             width: 'calc(100% - 478px - 32px)', // Resto del espacio menos galería y gap
             maxWidth: '819px', // Panel info (descripción + precio) max
             maxHeight: "calc(100vh - 120px)",
-            scrollbarWidth: "thin",
-            scrollbarColor: "#CBD5E0 transparent",
-            scrollBehavior: "auto", // Scroll suave
           }}
         >
           <div className="flex gap-8">
