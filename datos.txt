@@ -1,0 +1,162 @@
+[
+  {
+    "tag": "HTML",
+    "text": "Saltar a\nSaltar el contenido\nC",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "PLASMO-CSUI",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "HEAD",
+    "text": "@layer {\n  [data-react-aria-pr",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "STYLE",
+    "text": "@layer {\n  [data-react-aria-pr",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "STYLE",
+    "text": ".drift-bounding-box,.drift-zoo",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "LINK",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "LINK",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "LINK",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "LINK",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "LINK",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "LINK",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "SCRIPT",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "SCRIPT",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "SCRIPT",
+    "text": "window.NREUM||(NREUM={});NREUM",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "SCRIPT",
+    "text": "[26998,60226,22123,37237,75246",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "SCRIPT",
+    "text": "{\"namedChunks\":[\"components-on",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "NOSCRIPT",
+    "text": "<meta http-equiv=\"refresh\" con",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "META",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "META",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  },
+  {
+    "tag": "META",
+    "text": "",
+    "fontSize": "13px",
+    "fontFamily": "\"Proxima Nova\", -apple-system, Roboto, Arial, sans-serif",
+    "fontWeight": "400",
+    "color": "rgb(0, 0, 0)"
+  }
+]

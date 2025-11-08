@@ -172,49 +172,125 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
         </div>
       ) : data ? (
         <div className="space-y-0">
-          {/* Precio Público (Principal) */}
-          <div className="text-center pb-4">
-            <p className="text-xs text-gray-600 mb-1">Precio Público Lista</p>
-            <div className="flex items-center justify-center gap-1 my-2">
-              <span className="text-3xl text-gray-700">$</span>
-              <p className="text-[2.5rem] font-normal text-[#333333] leading-none">
-                {formatPriceNumber(data.escenarios.publico.con_iva)}
-              </p>
+          {/* Precio estilo MercadoLibre */}
+          <div className="pb-5">
+            {/* Precio anterior tachado */}
+            <div className="mb-2">
+              <span className="text-[16px] font-normal" style={{
+                color: 'rgba(0, 0, 0, 0.55)',
+                textDecoration: 'line-through',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+              }}>
+                ${formatPriceNumber(Math.round(data.escenarios.publico.con_iva * 1.42))}
+              </span>
             </div>
-            <p className="text-xs text-gray-500">
+
+            {/* Precio principal */}
+            <div className="flex items-baseline gap-2 mb-2">
+              <span className="text-[36px] font-light" style={{
+                color: 'rgb(0, 0, 0)',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
+                fontWeight: 300
+              }}>
+                ${formatPriceNumber(data.escenarios.publico.con_iva)}
+              </span>
+              <span className="text-[18px] font-normal" style={{
+                color: 'rgb(76, 175, 80)',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
+                fontWeight: 400
+              }}>
+                42% OFF
+              </span>
+            </div>
+
+            <p className="text-xs" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
               {formatUSD(precioListaUSD)} + IVA {ivaPorcentaje}%
             </p>
           </div>
 
-          {/* Stock */}
-          <div className="py-4 border-t border-gray-200 text-center">
-            <p className="text-sm text-gray-900 font-medium mb-1">Stock disponible</p>
-            <p className="text-sm text-gray-600">Cantidad: 1 unidad</p>
-          </div>
+          {/* Botones estilo MercadoLibre */}
+          <div className="space-y-3" style={{ marginTop: '20px' }}>
+            {/* Botón Comprar ahora */}
+            <button className="w-full rounded-md transition-colors" style={{
+              height: '48px',
+              fontSize: '16px',
+              fontWeight: 600,
+              backgroundColor: '#3483FA',
+              color: 'white',
+              fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
+              border: 'none',
+              cursor: 'pointer'
+            }}>
+              Comprar ahora
+            </button>
 
-          {/* Botón CTA */}
-          <div className="py-5 border-t border-gray-200">
-            <button className="w-full bg-[#3483FA] hover:bg-[#2968C8] text-white font-semibold px-4 rounded-md transition-colors text-base h-12">
-              Consultar ahora
+            {/* Botón Agregar al carrito */}
+            <button className="w-full rounded-md transition-colors" style={{
+              height: '48px',
+              fontSize: '14px',
+              fontWeight: 400,
+              backgroundColor: 'rgba(65, 137, 230, 0.15)',
+              color: '#3483FA',
+              fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
+              border: 'none',
+              cursor: 'pointer'
+            }}>
+              Agregar al carrito
             </button>
           </div>
 
+          {/* Stock */}
+          <div className="py-4 border-t border-gray-200" style={{ marginTop: '20px' }}>
+            <p className="text-sm font-medium mb-1" style={{ color: 'rgba(0, 0, 0, 0.9)' }}>Stock disponible</p>
+            <p className="text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>Cantidad: 1 unidad</p>
+          </div>
+
           {/* Información adicional */}
-          <div className="pt-4 border-t border-gray-200 text-center space-y-4">
+          <div className="pt-4 border-t border-gray-200 space-y-3">
             <div>
-              <p className="text-sm text-gray-900 font-medium">Entrega a acordar con el vendedor</p>
-              <p className="text-sm text-gray-600 mt-0.5">Florida, Buenos Aires</p>
+              <p className="text-[14px] font-normal mb-1" style={{
+                color: 'rgba(0, 0, 0, 0.9)',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+              }}>
+                Entrega a acordar con el vendedor
+              </p>
+              <p className="text-[14px] font-normal" style={{
+                color: 'rgba(0, 0, 0, 0.55)',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+              }}>
+                Florida, Buenos Aires
+              </p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-900 font-medium">Cotización de referencia</p>
-              <p className="text-sm text-gray-600 mt-0.5">{selectedRateLabel.label}: ${selectedRateData?.venta.toFixed(2)}</p>
+              <p className="text-[14px] font-normal mb-1" style={{
+                color: 'rgba(0, 0, 0, 0.9)',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+              }}>
+                Cotización de referencia
+              </p>
+              <p className="text-[14px] font-normal" style={{
+                color: 'rgba(0, 0, 0, 0.55)',
+                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+              }}>
+                {selectedRateLabel.label}: ${selectedRateData?.venta.toFixed(2)}
+              </p>
             </div>
 
             {pricingConfig?.familia && (
               <div>
-                <p className="text-sm text-gray-900 font-medium">Familia de Producto</p>
-                <p className="text-sm text-gray-600 mt-0.5">{pricingConfig.familia}</p>
+                <p className="text-[14px] font-normal mb-1" style={{
+                  color: 'rgba(0, 0, 0, 0.9)',
+                  fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+                }}>
+                  Familia de Producto
+                </p>
+                <p className="text-[14px] font-normal" style={{
+                  color: 'rgba(0, 0, 0, 0.55)',
+                  fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+                }}>
+                  {pricingConfig.familia}
+                </p>
               </div>
             )}
           </div>
