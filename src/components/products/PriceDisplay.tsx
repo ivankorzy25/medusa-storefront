@@ -361,28 +361,53 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorc
                     <span className="font-semibold text-gray-900">$ {selectedRateData?.venta.toFixed(2)}</span>
                   </div>
                   <p className="text-gray-500 text-xs mt-1">
-                    Precio público calculado con cotización de venta
+                    Dólar venta (precio público calculado con esta cotización)
                   </p>
                 </div>
               </div>
 
               {/* Otras cotizaciones */}
-              {exchangeRates.length > 1 && (
+              {exchangeRates.length > 0 && (
                 <div className="space-y-2">
                   <h3 className="text-sm font-bold text-gray-900">Otras cotizaciones de referencia</h3>
-                  <div className="grid grid-cols-2 gap-1">
-                    {exchangeRates
-                      .filter(rate => rate.tipo !== tipoCambio)
-                      .slice(0, 4)
-                      .map(rate => {
-                        const label = EXCHANGE_RATE_LABELS[rate.tipo as ExchangeRateType];
-                        return (
-                          <div key={rate.tipo} className="bg-white rounded p-1.5 text-center">
-                            <p className="text-xs text-gray-600 truncate">{label?.shortLabel}</p>
-                            <p className="text-xs font-bold text-gray-900">${rate.venta.toFixed(2)}</p>
+                  <div className="space-y-2">
+                    {/* Dólar Blue */}
+                    {(() => {
+                      const blueRate = exchangeRates.find(r => r.tipo === 'blue');
+                      if (!blueRate) return null;
+                      return (
+                        <div className="bg-white rounded p-2 text-xs">
+                          <p className="font-semibold text-gray-900 mb-1">Dólar Blue</p>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Compra:</span>
+                            <span className="font-medium text-gray-900">$ {blueRate.compra.toFixed(2)}</span>
                           </div>
-                        );
-                      })}
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Venta:</span>
+                            <span className="font-medium text-gray-900">$ {blueRate.venta.toFixed(2)}</span>
+                          </div>
+                        </div>
+                      );
+                    })()}
+
+                    {/* Dólar Oficial BNA */}
+                    {(() => {
+                      const oficialRate = exchangeRates.find(r => r.tipo === 'oficial');
+                      if (!oficialRate) return null;
+                      return (
+                        <div className="bg-white rounded p-2 text-xs">
+                          <p className="font-semibold text-gray-900 mb-1">Dólar Oficial BNA</p>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Compra:</span>
+                            <span className="font-medium text-gray-900">$ {oficialRate.compra.toFixed(2)}</span>
+                          </div>
+                          <div className="flex justify-between">
+                            <span className="text-gray-600">Venta:</span>
+                            <span className="font-medium text-gray-900">$ {oficialRate.venta.toFixed(2)}</span>
+                          </div>
+                        </div>
+                      );
+                    })()}
                   </div>
                 </div>
               )}
