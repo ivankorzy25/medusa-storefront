@@ -48,6 +48,8 @@ async function getProductByHandle(handle: string) {
       capacidad_tanque_l: product.metadata?.combustible_capacidad_tanque ? Number(product.metadata.combustible_capacidad_tanque) : undefined,
       consumo_75_carga_lh: product.metadata?.motor_consumo_75_carga ? Number(product.metadata.motor_consumo_75_carga) : undefined,
       rpm_motor: product.metadata?.motor_rpm ? Number(product.metadata.motor_rpm) : undefined,
+      // Pricing config
+      pricing_config: product.metadata?.pricing_config as any | undefined,
     },
     images: (product.images || []).map((img: any, index: number) => ({
       id: img.id || String(index),
@@ -368,6 +370,7 @@ export default async function ProductPage({
               <PriceDisplay
                 productId={product.id}
                 priceUSD={product.priceWithoutTax}
+                pricingConfig={product.metadata.pricing_config}
               />
             }
           />

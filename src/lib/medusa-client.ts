@@ -65,13 +65,13 @@ export async function getVariantPrice(variant: any) {
   // Fallback: Try to get price from variant's price data
   // This happens when calculated_price is null
   try {
-    // For CS200A, we know the price is $25,000 USD
+    // For CS200A, we know the price is $26,411 USD (updated from PDF Lista #1083)
     // In a real scenario, we would fetch this from the database
     // For now, hardcode it as a temporary solution
     if (variant.sku === "GEN-CS200A-STD") {
       return {
-        priceWithoutTax: 25000,
-        priceWithTax: 25000,
+        priceWithoutTax: 26411,
+        priceWithTax: 26411,
         currency: "USD",
       }
     }

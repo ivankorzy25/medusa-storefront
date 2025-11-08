@@ -3,9 +3,25 @@
 import React, { useState, useEffect } from "react";
 import { ChevronDown, RefreshCw, AlertCircle, Info } from "lucide-react";
 
+interface PricingConfig {
+  precio_lista_usd: number;
+  currency_type: string;
+  iva_percentage: number;
+  bonificacion_percentage: number;
+  contado_descuento_percentage: number;
+  familia: string;
+  precios_calculados?: {
+    mercadolibre_usd: number;
+    publico_usd: number;
+    mayorista_contado_usd: number;
+    mayorista_financiado_usd: number;
+  };
+}
+
 interface PriceDisplayProps {
   productId: string;
   priceUSD?: number;
+  pricingConfig?: PricingConfig;
 }
 
 type ExchangeRateType = "oficial" | "blue" | "mep" | "ccl" | "mayorista" | "cripto" | "tarjeta";
@@ -20,10 +36,9 @@ const EXCHANGE_RATE_LABELS: Record<ExchangeRateType, { label: string; shortLabel
   tarjeta: { label: "Dólar Tarjeta", shortLabel: "Tarjeta" },
 };
 
-export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
-  // Tipo de cambio fijo según producto - por defecto "oficial"
-  // TODO: Leer desde metadata del producto si debe usar "blue"
-  const tipoCambio: ExchangeRateType = "oficial";
+export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDisplayProps) {
+  // Determinar tipo de cambio según producto - leer desde metadata
+  const tipoCambio: ExchangeRateType = pricingConfig?.currency_type === "usd_blue" ? "blue" : "oficial";
 
   const [data, setData] = useState<any>(null);
   const [exchangeRates, setExchangeRates] = useState<any[]>([]);
@@ -33,6 +48,12 @@ export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
 
   // Siempre incluir IVA
   const incluirIva = true;
+
+  // Determinar precio USD base y parámetros de cálculo
+  const precioListaUSD = pricingConfig?.precio_lista_usd || priceUSD || 0;
+  const ivaPorcentaje = pricingConfig?.iva_percentage || 10.5;
+  const bonificacion = pricingConfig?.bonificacion_percentage || 0;
+  const descuentoContado = pricingConfig?.contado_descuento_percentage || 0;
 
   const fetchData = async () => {
     setIsLoading(true);
@@ -55,9 +76,9 @@ export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
         setExchangeRates(ratesData.data);
       }
 
-      // Obtener precio calculado
+      // Obtener precio calculado con bonificaciones y descuentos
       const priceResponse = await fetch(
-        `/api/calculate-price?precio_usd=${priceUSD || 0}&tipo_cambio=${tipoCambio}&incluir_iva=${incluirIva}`,
+        `/api/calculate-price?precio_usd=${precioListaUSD}&tipo_cambio=${tipoCambio}&incluir_iva=${incluirIva}&iva_porcentaje=${ivaPorcentaje}&bonificacion=${bonificacion}&descuento_contado=${descuentoContado}`,
         {
           cache: 'no-store',
           headers: { 'Content-Type': 'application/json' }
@@ -85,7 +106,7 @@ export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
 
   useEffect(() => {
     fetchData();
-  }, [productId]);
+  }, [productId, precioListaUSD, bonificacion, descuentoContado]);
 
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat("es-AR", {
@@ -151,29 +172,80 @@ export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
         </div>
       ) : data ? (
         <div className="space-y-4">
-          {/* Precio Principal ARS */}
+          {/* Precio Público (Principal) */}
           <div>
+            <p className="text-xs text-gray-600 mb-1">Precio Público Lista</p>
             <div className="flex items-start gap-2">
               <span className="text-3xl text-gray-700 mt-1">$</span>
               <p className="text-4xl font-normal text-[#333333] leading-tight">
-                {formatPriceNumber(data.precio_ars.final)}
+                {formatPriceNumber(data.escenarios.publico.con_iva)}
               </p>
             </div>
             <p className="text-sm text-gray-600 mt-2">
-              Precio sin impuestos nacionales: $ {formatPriceNumber(data.precio_ars.sin_iva)}
+              {formatUSD(precioListaUSD)} + IVA {ivaPorcentaje}%
             </p>
           </div>
 
-          {/* Precio USD */}
-          <div className="pt-4 border-t border-gray-200">
-            <p className="text-sm text-gray-600 mb-1">Precio en dólares</p>
-            <div className="flex items-baseline gap-2">
-              <span className="text-base text-gray-700">US$</span>
-              <p className="text-xl font-medium text-[#333333]">
-                {formatUSDNumber(data.precio_base_usd * 1.105)}
-              </p>
+          {/* Precios Mayoristas (si hay bonificación/descuento configurados) */}
+          {(bonificacion > 0 || descuentoContado > 0) && (
+            <div className="pt-4 border-t border-gray-200 space-y-3">
+              <div className="bg-blue-50 rounded-lg p-3 border border-blue-200">
+                <div className="flex items-center gap-2 mb-2">
+                  <Info className="w-4 h-4 text-blue-600" />
+                  <p className="text-xs font-semibold text-blue-900">Precios Mayoristas</p>
+                </div>
+                <p className="text-xs text-blue-700 mb-3">
+                  ¿Sos distribuidor o comprás en volumen? Tenemos precios especiales
+                </p>
+
+                {/* Precio Contado */}
+                {descuentoContado > 0 && (
+                  <div className="bg-white rounded p-2 mb-2">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="text-xs font-medium text-gray-700">Precio Contado</p>
+                        <p className="text-xs text-gray-500">{data.escenarios.mayorista_contado.descripcion}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-lg font-semibold text-green-700">
+                          ${formatPriceNumber(data.escenarios.mayorista_contado.con_iva)}
+                        </p>
+                        <p className="text-xs text-green-600">
+                          {data.escenarios.mayorista_contado.descuento_total}% OFF
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                {/* Precio Financiado */}
+                {bonificacion > 0 && (
+                  <div className="bg-white rounded p-2">
+                    <div className="flex justify-between items-start">
+                      <div>
+                        <p className="text-xs font-medium text-gray-700">Precio Financiado</p>
+                        <p className="text-xs text-gray-500">{data.escenarios.mayorista_financiado.descripcion}</p>
+                      </div>
+                      <div className="text-right">
+                        <p className="text-lg font-semibold text-blue-700">
+                          ${formatPriceNumber(data.escenarios.mayorista_financiado.con_iva)}
+                        </p>
+                        <p className="text-xs text-blue-600">
+                          {data.escenarios.mayorista_financiado.descuento_total}% OFF
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                )}
+
+                <div className="mt-2 pt-2 border-t border-blue-200">
+                  <p className="text-xs text-blue-700 italic">
+                    📞 Contactanos para acceder a estos precios
+                  </p>
+                </div>
+              </div>
             </div>
-          </div>
+          )}
 
           {/* Stock */}
           <div className="pt-4 border-t border-gray-200">
@@ -199,6 +271,13 @@ export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
               <p className="text-sm text-gray-900 font-medium mb-1">Cotización de referencia</p>
               <p className="text-sm text-gray-600">{selectedRateLabel.label}: ${selectedRateData?.venta.toFixed(2)}</p>
             </div>
+
+            {pricingConfig?.familia && (
+              <div>
+                <p className="text-sm text-gray-900 font-medium mb-1">Familia de Producto</p>
+                <p className="text-sm text-gray-600">{pricingConfig.familia}</p>
+              </div>
+            )}
           </div>
 
           {/* Botón Ver Detalles */}
@@ -216,39 +295,47 @@ export function PriceDisplay({ productId, priceUSD }: PriceDisplayProps) {
           {showDetails && (
             <div className="bg-gray-50 rounded-lg p-2 space-y-2 w-[85%] overflow-hidden">
               <div className="space-y-2">
-                <h3 className="text-sm font-bold text-gray-900">Desglose del precio</h3>
+                <h3 className="text-sm font-bold text-gray-900">Desglose del precio (Público)</h3>
 
                 <div className="space-y-2 bg-white rounded p-2">
                   <div className="flex justify-between text-xs gap-2">
-                    <span className="text-gray-600">Precio base (sin IVA)</span>
-                    <span className="font-semibold text-gray-900 text-right">$ {formatPriceNumber(data.precio_ars.sin_iva)}</span>
+                    <span className="text-gray-600">Precio base USD</span>
+                    <span className="font-semibold text-gray-900 text-right">{formatUSD(precioListaUSD)}</span>
                   </div>
 
-                  {data.precio_ars.iva > 0 && (
+                  <div className="flex justify-between text-xs gap-2">
+                    <span className="text-gray-600">Cotización ({selectedRateLabel.shortLabel})</span>
+                    <span className="font-semibold text-gray-900 text-right">${selectedRateData?.venta.toFixed(2)}</span>
+                  </div>
+
+                  <div className="flex justify-between text-xs gap-2">
+                    <span className="text-gray-600">Precio ARS (sin IVA)</span>
+                    <span className="font-semibold text-gray-900 text-right">$ {formatPriceNumber(data.escenarios.publico.sin_iva)}</span>
+                  </div>
+
+                  {data.escenarios.publico.con_iva > data.escenarios.publico.sin_iva && (
                     <div className="flex justify-between text-xs gap-2">
-                      <span className="text-gray-600">IVA (10.5%)</span>
-                      <span className="font-semibold text-gray-900 text-right">$ {formatPriceNumber(data.precio_ars.iva)}</span>
+                      <span className="text-gray-600">IVA ({ivaPorcentaje}%)</span>
+                      <span className="font-semibold text-gray-900 text-right">$ {formatPriceNumber(data.escenarios.publico.con_iva - data.escenarios.publico.sin_iva)}</span>
                     </div>
                   )}
 
                   <div className="flex justify-between text-xs pt-2 border-t border-gray-200 gap-2">
                     <span className="font-bold text-gray-900">Total</span>
-                    <span className="font-bold text-gray-900 text-right">$ {formatPriceNumber(data.precio_ars.final)}</span>
+                    <span className="font-bold text-gray-900 text-right">$ {formatPriceNumber(data.escenarios.publico.con_iva)}</span>
                   </div>
                 </div>
               </div>
 
-              <div className="space-y-2">
-                <h3 className="text-sm font-bold text-gray-900">Tipo de cambio aplicado</h3>
-                <div className="bg-white rounded p-2 text-xs">
-                  <p className="font-semibold text-gray-900">
-                    {selectedRateLabel.label}
-                  </p>
-                  <p className="text-gray-500 mt-0.5">
-                    Compra: ${selectedRateData?.compra.toFixed(2)} • Venta: ${selectedRateData?.venta.toFixed(2)}
-                  </p>
+              {/* Fórmula de cálculo */}
+              {data.calculo?.formula && (
+                <div className="space-y-2">
+                  <h3 className="text-sm font-bold text-gray-900">Cálculo aplicado</h3>
+                  <div className="bg-white rounded p-2 text-xs">
+                    <p className="font-mono text-gray-700">{data.calculo.formula}</p>
+                  </div>
                 </div>
-              </div>
+              )}
 
               {/* Otras cotizaciones */}
               {exchangeRates.length > 1 && (
