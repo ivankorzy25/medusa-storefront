@@ -1,0 +1,8 @@
+🔄 Update region ID to EUR in Medusa client
+
+- Changed DEFAULT_REGION_ID from USD to EUR region
+- Auto-backup: 2025-11-07 22:06:54
+
+🤖 Generated with [Claude Code](https://claude.com/claude-code)
+
+Co-Authored-By: Claude <noreply@anthropic.com>

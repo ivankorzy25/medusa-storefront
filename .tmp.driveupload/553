@@ -1,0 +1,179 @@
+[00:00:01.117] Server  LOG      ✓ Ready in 820ms
+[00:00:05.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:42.984] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:09:55.198] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:09:55.454] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:10:42.951] Server  DEBUG   Initiating Medusa client with default headers:
+ "{\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:10:42.963] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:10:42.972] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:10:43.036] Server  DEBUG   Received response with status 400
+
+[00:10:43.037] Server  DEBUG   Received response with status 400
+
+[00:10:43.064] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:10:43.068] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:10:43.274] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:10:43.475] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:12:59.208] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:12:59.222] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:12:59.654] Server  DEBUG   Received response with status 400
+
+[00:12:59.655] Server  DEBUG   Received response with status 400
+
+[00:12:59.665] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:12:59.675] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:13:06.597] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:13:06.615] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:13:06.974] Server  DEBUG   Received response with status 400
+
+[00:13:06.975] Server  DEBUG   Received response with status 400
+
+[00:13:06.983] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:13:06.991] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:13:07.268] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:13:07.519] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:16:57.891] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:16:57.913] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:16:58.255] Server  DEBUG   Received response with status 400
+
+[00:16:58.256] Server  DEBUG   Received response with status 400
+
+[00:16:58.272] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:16:58.279] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:16:58.653] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:16:58.823] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:17:14.743] Server  LOG      ✓ Compiled in 205ms
+[00:17:14.898] Server  DEBUG   Initiating Medusa client with default headers:
+ "{\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:17:14.914] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:17:14.946] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:17:15.144] Server  DEBUG   Received response with status 200
+
+[00:17:15.149] Server  DEBUG   Received response with status 200
+
+[00:17:15.151] Server  WARN     ⚠ metadataBase property in metadata export is not set for resolving social open graph or twitter images, using "http://localhost:3000". See https://nextjs.org/docs/app/api-reference/functions/generate-metadata#metadatabase
+[00:19:50.535] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:19:50.552] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:19:50.722] Server  DEBUG   Received response with status 200
+
+[00:19:50.730] Server  DEBUG   Received response with status 200
+
+[00:19:51.157] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:51.362] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:19:51.755] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:19:51.761] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:19:51.868] Browser ERROR   [PriceDisplay] Error: {}
+[00:22:05.342] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:22:05.418] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:22:05.849] Server  DEBUG   Received response with status 200
+
+[00:22:05.859] Server  DEBUG   Received response with status 200
+
+[00:22:06.659] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:22:06.837] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:22:06.909] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:22:06.985] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:22:07.088] Browser ERROR   [PriceDisplay] Error: {}
+[00:25:45.911] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:25:45.940] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:25:46.230] Server  DEBUG   Received response with status 200
+
+[00:25:46.241] Server  DEBUG   Received response with status 200
+
+[00:25:47.014] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:47.331] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:25:47.373] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:25:47.584] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:25:47.691] Browser ERROR   [PriceDisplay] Error: {}
+[00:27:16.557] Server  LOG      ✓ Compiled in 4.9s
+[00:27:16.918] Server  DEBUG   Initiating Medusa client with default headers:
+ "{\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:16.948] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:16.992] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K95YRJHQC630D0FZWYZPST3S&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:17.244] Server  DEBUG   Received response with status 400
+
+[00:27:17.247] Server  DEBUG   Received response with status 400
+
+[00:27:17.327] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:27:17.339] Server  ERROR   Error fetching product: Error: Region with id reg_01K95YRJHQC630D0FZWYZPST3S not found when populating the pricing context
+[00:27:26.974] Server  DEBUG   Initiating Medusa client with default headers:
+ "{\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:27.015] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:27.029] Server  DEBUG   Received response with status 200
+
+[00:27:27.049] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:27.052] Server  DEBUG   Received response with status 200
+
+[00:27:52.516] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:52.528] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:27:52.817] Server  DEBUG   Received response with status 200
+
+[00:27:52.822] Server  DEBUG   Received response with status 200
+
+[00:27:53.487] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:27:53.706] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:27:53.746] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:27:53.845] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:27:53.952] Browser ERROR   [PriceDisplay] Error: {}
+[00:39:20.902] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:39:20.921] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:39:21.017] Server  DEBUG   Received response with status 200
+
+[00:39:21.022] Server  DEBUG   Received response with status 200
+
+[00:39:21.565] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:21.848] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:39:21.874] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:39:21.899] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:39:21.999] Browser ERROR   [PriceDisplay] Error: {}
+[00:40:25.108] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:40:25.122] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:40:25.427] Server  DEBUG   Received response with status 200
+
+[00:40:25.431] Server  DEBUG   Received response with status 200
+
+[00:40:26.213] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:40:26.397] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:40:26.564] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:40:26.617] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:40:26.723] Browser ERROR   [PriceDisplay] Error: {}
+[00:41:35.810] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:41:35.840] Server  DEBUG   Performing request to:
+ "URL: http://localhost:9000/store/products?handle=cummins-cs200a&region_id=reg_01K9FZ96V1AT4PGR95NE8VYZ8N&fields=%2Avariants%2C%2Avariants.calculated_price%2C%2Aimages%2C%2Ametadata\n" "Headers: {\n  \"accept\": \"application/json\",\n  \"content-type\": \"application/json\",\n  \"x-publishable-api-key\": \"pk_f1e1f52b9d9a06b31c0a0d75e188818220ea0bc3aaae1df27e2e8720ec56cc9b\",\n  \"authorization\": \"<REDACTED>\"\n}\n"
+[00:41:36.328] Server  DEBUG   Received response with status 200
+
+[00:41:36.338] Server  DEBUG   Received response with status 200
+
+[00:41:37.112] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:41:37.694] Server  LOG     [API Route] Fetching exchange rates from: "http://localhost:9000/exchange-rates"
+[00:41:37.727] Server  ERROR   [API Route] Exchange rates fetch failed: 404 "Not Found"
+[00:41:37.840] Browser WARN    Image with src "/logos/kor-logo-3d-final.png" has "fill" but is missing "sizes" prop. Please add it to improve page performance. Read more: https://nextjs.org/docs/api-reference/next/image#sizes
+[00:41:37.841] Browser ERROR   [PriceDisplay] Error: {}

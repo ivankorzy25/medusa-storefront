@@ -1,0 +1,13 @@
+0000000000000000000000000000000000000000 f4d94ddbb3d2a12ada4a129c29010d373b51e645 Ivan Korzyniewski <ivankorzyniewski@MacBook-Air-de-Ivan.local> 1762540362 -0300	clone: from https://github.com/ivankorzy25/medusa-storefront-product-template-20251106.git
+f4d94ddbb3d2a12ada4a129c29010d373b51e645 0000000000000000000000000000000000000000 Ivan Korzyniewski <ivankorzyniewski@MacBook-Air-de-Ivan.local> 1762549773 -0300	Branch: renamed refs/heads/main to refs/heads/main
+f4d94ddbb3d2a12ada4a129c29010d373b51e645 f4d94ddbb3d2a12ada4a129c29010d373b51e645 Ivan Korzyniewski <ivankorzyniewski@MacBook-Air-de-Ivan.local> 1762549773 -0300	Branch: renamed refs/heads/main to refs/heads/main
+f4d94ddbb3d2a12ada4a129c29010d373b51e645 2cecb262ceabe76a348f6f80080895b907f02152 Ivan Korzyniewski <ivankorzy25@github.com> 1762551057 -0300	commit: 🚀 Sistema de Backup Automático para Storefront
+2cecb262ceabe76a348f6f80080895b907f02152 363abaf631c6bf118c3498a2317c1285f79e8032 Ivan Korzyniewski <ivankorzy25@github.com> 1762551167 -0300	commit: 📚 Documentación completa del sistema de backup
+363abaf631c6bf118c3498a2317c1285f79e8032 8c75c52545bbbacafbe673864589c372ecf629c1 Ivan Korzyniewski <ivankorzy25@github.com> 1762551190 -0300	commit (amend): 📚 Documentación completa del sistema de backup
+8c75c52545bbbacafbe673864589c372ecf629c1 8c75c52545bbbacafbe673864589c372ecf629c1 Ivan Korzyniewski <ivankorzy25@github.com> 1762562127 -0300	reset: moving to origin/main
+8c75c52545bbbacafbe673864589c372ecf629c1 c568c8764532dc86553f23c8c2a547d3b4849880 Ivan Korzyniewski <ivankorzy25@github.com> 1762563381 -0300	commit: Punto de control antes de corregir region_id - 2025-11-07 21:56:21
+c568c8764532dc86553f23c8c2a547d3b4849880 90b85cd3c4da4ddf3d0962d4fe6d223afdfdf647 Ivan Korzyniewski <ivankorzy25@github.com> 1762563938 -0300	commit: 🔄 Update region ID to EUR in Medusa client
+90b85cd3c4da4ddf3d0962d4fe6d223afdfdf647 c568c8764532dc86553f23c8c2a547d3b4849880 Ivan Korzyniewski <ivankorzy25@github.com> 1762563955 -0300	reset: moving to HEAD~1
+c568c8764532dc86553f23c8c2a547d3b4849880 5b85eb7eb99e26e64bf069b3c7be412c206b67d4 Ivan Korzyniewski <ivankorzy25@github.com> 1762563962 -0300	commit: 🔄 Update region ID to EUR in Medusa client
+5b85eb7eb99e26e64bf069b3c7be412c206b67d4 8c75c52545bbbacafbe673864589c372ecf629c1 Ivan Korzyniewski <ivankorzy25@github.com> 1762563996 -0300	reset: moving to 8c75c52
+8c75c52545bbbacafbe673864589c372ecf629c1 6e412eed39ba119ab9b9429e5f1144c93d4926a4 Ivan Korzyniewski <ivankorzy25@github.com> 1762564014 -0300	commit: 🔄 Update region ID to EUR in Medusa client
