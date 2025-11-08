@@ -30,6 +30,13 @@ interface PriceDisplayProps {
     interes: number;
     costoPorCuota: number;
   }>;
+  stockCantidad?: number;
+  stockDisponible?: boolean;
+  ubicacionEnvio?: {
+    ciudad?: string;
+    provincia?: string;
+    texto_completo?: string;
+  };
 }
 
 type ExchangeRateType = "oficial" | "blue" | "mep" | "ccl" | "mayorista" | "cripto" | "tarjeta";
@@ -44,7 +51,7 @@ const EXCHANGE_RATE_LABELS: Record<ExchangeRateType, { label: string; shortLabel
   tarjeta: { label: "Dólar Tarjeta", shortLabel: "Tarjeta" },
 };
 
-export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorcentaje, precioAnterior, financiacionDisponible, planesFinanciacion }: PriceDisplayProps) {
+export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorcentaje, precioAnterior, financiacionDisponible, planesFinanciacion, stockCantidad, stockDisponible, ubicacionEnvio }: PriceDisplayProps) {
   // Determinar tipo de cambio según producto - leer desde metadata
   const tipoCambio: ExchangeRateType = pricingConfig?.currency_type === "usd_blue" ? "blue" : "oficial";
 
@@ -204,12 +211,15 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorc
             </div>
 
             {/* Financiación - solo si está disponible */}
-            {financiacionDisponible && planesFinanciacion && planesFinanciacion.length > 0 && planesFinanciacion[0].interes <= 0.15 && (
+            {financiacionDisponible && planesFinanciacion && planesFinanciacion.length > 0 && (
               <p className="text-[14px] font-normal mb-2" style={{
                 color: 'rgba(0, 0, 0, 0.9)',
                 fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
               }}>
-                Mismo precio en {planesFinanciacion[0].cuotas} cuotas de $ {formatARS(planesFinanciacion[0].costoPorCuota)}
+                {planesFinanciacion[0].interes === 0 || planesFinanciacion[0].interes <= 0.01
+                  ? `Mismo precio en ${planesFinanciacion[0].cuotas} cuotas de $ ${formatARS(planesFinanciacion[0].costoPorCuota)}`
+                  : `Hasta ${planesFinanciacion[0].cuotas} cuotas de $ ${formatARS(planesFinanciacion[0].costoPorCuota)}`
+                }
               </p>
             )}
 
@@ -249,14 +259,21 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorc
             </button>
           </div>
 
-          {/* Stock */}
+          {/* Stock - Leer de metadata */}
           <div className="py-4 border-t border-gray-200" style={{ marginTop: '20px' }}>
-            <p className="text-sm font-medium mb-1" style={{ color: 'rgba(0, 0, 0, 0.9)' }}>Stock disponible</p>
-            <p className="text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>Cantidad: 1 unidad</p>
+            <p className="text-sm font-medium mb-1" style={{ color: 'rgba(0, 0, 0, 0.9)' }}>
+              {stockDisponible ? 'Stock disponible' : 'Sin stock'}
+            </p>
+            {stockCantidad !== undefined && (
+              <p className="text-sm" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>
+                Cantidad: {stockCantidad} {stockCantidad === 1 ? 'unidad' : 'unidades'}
+              </p>
+            )}
           </div>
 
           {/* Información adicional */}
           <div className="pt-4 border-t border-gray-200 space-y-3">
+            {/* Ubicación de envío - Leer de metadata */}
             <div>
               <p className="text-[14px] font-normal mb-1" style={{
                 color: 'rgba(0, 0, 0, 0.9)',
@@ -264,12 +281,14 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorc
               }}>
                 Entrega a acordar con el vendedor
               </p>
-              <p className="text-[14px] font-normal" style={{
-                color: 'rgba(0, 0, 0, 0.55)',
-                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
-              }}>
-                Florida, Buenos Aires
-              </p>
+              {ubicacionEnvio && (
+                <p className="text-[14px] font-normal" style={{
+                  color: 'rgba(0, 0, 0, 0.55)',
+                  fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+                }}>
+                  {ubicacionEnvio.texto_completo || `${ubicacionEnvio.ciudad}, ${ubicacionEnvio.provincia}`}
+                </p>
+              )}
             </div>
 
             <div>

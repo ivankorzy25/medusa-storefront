@@ -63,6 +63,24 @@ async function getProductByHandle(handle: string) {
       total_ventas: product.metadata?.total_ventas ? Number(product.metadata.total_ventas) : undefined,
       es_mas_vendido: product.metadata?.es_mas_vendido === true || product.metadata?.es_mas_vendido === 'true',
       categoria: product.metadata?.categoria as string | undefined,
+      // Rating and reviews
+      rating_promedio: product.metadata?.rating_promedio ? Number(product.metadata.rating_promedio) : undefined,
+      total_reviews: product.metadata?.total_reviews ? Number(product.metadata.total_reviews) : undefined,
+      // Product status
+      estado_producto: product.metadata?.estado_producto as string | undefined,
+      // Stock
+      stock_cantidad: product.metadata?.stock_cantidad ? Number(product.metadata.stock_cantidad) : undefined,
+      stock_disponible: product.metadata?.stock_disponible === true || product.metadata?.stock_disponible === 'true',
+      // Shipping location
+      ubicacion_envio: product.metadata?.ubicacion_envio as any | undefined,
+      // Additional product attributes
+      combustible_tipo: product.metadata?.combustible_tipo as string | undefined,
+      tiene_tta: product.metadata?.tiene_tta as string | undefined,
+      tiene_cabina: product.metadata?.tiene_cabina === true || product.metadata?.tiene_cabina === 'true',
+      nivel_ruido_db: product.metadata?.nivel_ruido_db as string | undefined,
+      insonorizacion_tipo: product.metadata?.insonorizacion_tipo as string | undefined,
+      financiacion_disponible: product.metadata?.financiacion_disponible === true || product.metadata?.financiacion_disponible === 'true',
+      planes_financiacion: product.metadata?.planes_financiacion as any[] | undefined,
     },
     images: (product.images || []).map((img: any, index: number) => ({
       id: img.id || String(index),
@@ -287,12 +305,12 @@ export default async function ProductPage({
                 )}
 
                 <div>
-                  {/* Subtítulo dinámico (Nuevo | +X vendidos) */}
+                  {/* Subtítulo dinámico (Estado | +X vendidos) - Leer de metadata */}
                   <p className="text-[14px] font-normal mb-2" style={{
                     color: 'rgba(0, 0, 0, 0.55)',
                     fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
                   }}>
-                    Nuevo
+                    {product.metadata.estado_producto || 'Nuevo'}
                     {product.metadata.total_ventas && product.metadata.total_ventas > 0 && (
                       <> | +{product.metadata.total_ventas} vendidos</>
                     )}
@@ -308,70 +326,28 @@ export default async function ProductPage({
                     {product.title}
                   </h1>
 
-                  {/* Rating estilo MercadoLibre */}
-                  <div className="flex items-center gap-2" style={{ marginBottom: '16px' }}>
-                    {(() => {
-                      let score = 5.0;
-                      const reviews = 247; // Número de reviews
-
-                      // Restar puntos por características faltantes
-                      if (!product.metadata.alternador_marca?.toLowerCase().includes('stamford') &&
-                          !product.metadata.alternador_marca?.toLowerCase().includes('leroy')) {
-                        score -= 0.5;
-                      }
-
-                      if (!product.description?.toLowerCase().includes('cabina') &&
-                          !product.title.toLowerCase().includes('cabinado')) {
-                        score -= 0.5;
-                      }
-
-                      if (!product.description?.toLowerCase().includes('gas') &&
-                          !product.title.toLowerCase().includes('gas')) {
-                        score -= 0.3;
-                      }
-
-                      if (!product.description?.toLowerCase().includes('tta incluido') &&
-                          !product.description?.toLowerCase().includes('transferencia automática incluida')) {
-                        score -= 0.5;
-                      }
-
-                      // Bonificaciones
-                      if (product.metadata.motor_marca === "Cummins" ||
-                          product.metadata.motor_marca === "Perkins") {
-                        score += 0.3;
-                      }
-
-                      if (product.metadata.alternador_marca?.toLowerCase().includes('stamford')) {
-                        score += 0.2;
-                      }
-
-                      score = Math.max(3.5, Math.min(5.0, score));
-                      const stars = Math.floor(score);
-                      const hasHalf = score % 1 >= 0.5;
-
-                      return (
-                        <>
-                          <div className="flex items-center gap-1">
-                            <span className="text-[14px] font-semibold" style={{ color: 'rgba(0, 0, 0, 0.9)' }}>
-                              {score.toFixed(1)}
-                            </span>
-                            <div className="flex text-yellow-400 text-sm">
-                              {[...Array(stars)].map((_, i) => (
-                                <span key={i}>★</span>
-                              ))}
-                              {hasHalf && <span>☆</span>}
-                            </div>
-                          </div>
-                          <span className="text-[14px] font-normal" style={{
-                            color: 'rgba(0, 0, 0, 0.55)',
-                            fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
-                          }}>
-                            ({reviews})
-                          </span>
-                        </>
-                      );
-                    })()}
-                  </div>
+                  {/* Rating estilo MercadoLibre - Leer de metadata */}
+                  {product.metadata.rating_promedio && product.metadata.total_reviews && (
+                    <div className="flex items-center gap-2" style={{ marginBottom: '16px' }}>
+                      <div className="flex items-center gap-1">
+                        <span className="text-[14px] font-semibold" style={{ color: 'rgba(0, 0, 0, 0.9)' }}>
+                          {product.metadata.rating_promedio.toFixed(1)}
+                        </span>
+                        <div className="flex text-yellow-400 text-sm">
+                          {[...Array(Math.floor(product.metadata.rating_promedio))].map((_, i) => (
+                            <span key={i}>★</span>
+                          ))}
+                          {(product.metadata.rating_promedio % 1 >= 0.5) && <span>☆</span>}
+                        </div>
+                      </div>
+                      <span className="text-[14px] font-normal" style={{
+                        color: 'rgba(0, 0, 0, 0.55)',
+                        fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+                      }}>
+                        ({product.metadata.total_reviews})
+                      </span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Atributos Principales - Badges de Características */}
@@ -396,9 +372,8 @@ export default async function ProductPage({
                       </div>
                     )}
 
-                    {/* TTA (Transferencia Automática) */}
-                    {(product.description?.toLowerCase().includes('tta incluido') ||
-                      product.description?.toLowerCase().includes('transferencia automática incluida')) && (
+                    {/* TTA (Transferencia Automática) - Leer de metadata.tiene_tta */}
+                    {product.metadata.tiene_tta === 'incluido' && (
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold" style={{
                         backgroundColor: '#DCFCE7',
                         color: '#166534'
@@ -407,7 +382,7 @@ export default async function ProductPage({
                         TTA Incluido
                       </div>
                     )}
-                    {product.description?.toLowerCase().includes('tta opcional') && (
+                    {product.metadata.tiene_tta === 'opcional' && (
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold" style={{
                         backgroundColor: '#FEF3C7',
                         color: '#92400E'
@@ -417,9 +392,8 @@ export default async function ProductPage({
                       </div>
                     )}
 
-                    {/* Cabina */}
-                    {(product.description?.toLowerCase().includes('cabina') ||
-                      product.title.toLowerCase().includes('cabinado')) && (
+                    {/* Cabina - Leer de metadata.tiene_cabina */}
+                    {product.metadata.tiene_cabina === true && (
                       <div className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold" style={{
                         backgroundColor: '#E0E7FF',
                         color: '#3730A3'
@@ -523,6 +497,9 @@ export default async function ProductPage({
                 precioAnterior={product.metadata.precio_anterior}
                 financiacionDisponible={product.metadata.financiacion_disponible}
                 planesFinanciacion={product.metadata.planes_financiacion}
+                stockCantidad={product.metadata.stock_cantidad}
+                stockDisponible={product.metadata.stock_disponible}
+                ubicacionEnvio={product.metadata.ubicacion_envio}
               />
             }
           />
