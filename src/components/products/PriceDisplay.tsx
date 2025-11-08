@@ -352,15 +352,19 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorc
                 </div>
               </div>
 
-              {/* Fórmula de cálculo */}
-              {data.calculo?.formula && (
-                <div className="space-y-2">
-                  <h3 className="text-sm font-bold text-gray-900">Cálculo aplicado</h3>
-                  <div className="bg-white rounded p-2 text-xs">
-                    <p className="font-mono text-gray-700">{data.calculo.formula}</p>
+              {/* Referencia de tipo de cambio */}
+              <div className="space-y-2">
+                <h3 className="text-sm font-bold text-gray-900">Tipo de cambio utilizado</h3>
+                <div className="bg-white rounded p-2 text-xs">
+                  <div className="flex justify-between items-center">
+                    <span className="text-gray-600">{selectedRateLabel.label}</span>
+                    <span className="font-semibold text-gray-900">$ {selectedRateData?.venta.toFixed(2)}</span>
                   </div>
+                  <p className="text-gray-500 text-xs mt-1">
+                    Precio público calculado con cotización de venta
+                  </p>
                 </div>
-              )}
+              </div>
 
               {/* Otras cotizaciones */}
               {exchangeRates.length > 1 && (
