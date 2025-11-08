@@ -360,6 +360,22 @@ APLICACIONES:
   RAISE NOTICE 'Tags asignados: 10 tags';
 
   -- =========================================================================
+  -- 6. ASIGNAR SALES CHANNEL (Default Sales Channel)
+  -- =========================================================================
+
+  INSERT INTO product_sales_channel (id, product_id, sales_channel_id, created_at, updated_at)
+  VALUES (
+    gen_random_uuid()::text,
+    v_product_id,
+    'sc_01K9FZ84KQM1PG94Q6YT6248EW',  -- Default Sales Channel
+    NOW(),
+    NOW()
+  )
+  ON CONFLICT DO NOTHING;
+
+  RAISE NOTICE 'Sales Channel asignado: Default Sales Channel';
+
+  -- =========================================================================
   -- VERIFICACIÓN
   -- =========================================================================
   RAISE NOTICE '';
