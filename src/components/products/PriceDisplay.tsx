@@ -22,6 +22,8 @@ interface PriceDisplayProps {
   productId: string;
   priceUSD?: number;
   pricingConfig?: PricingConfig;
+  descuentoPorcentaje?: number;
+  precioAnterior?: number;
 }
 
 type ExchangeRateType = "oficial" | "blue" | "mep" | "ccl" | "mayorista" | "cripto" | "tarjeta";
@@ -36,7 +38,7 @@ const EXCHANGE_RATE_LABELS: Record<ExchangeRateType, { label: string; shortLabel
   tarjeta: { label: "Dólar Tarjeta", shortLabel: "Tarjeta" },
 };
 
-export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDisplayProps) {
+export function PriceDisplay({ productId, priceUSD, pricingConfig, descuentoPorcentaje, precioAnterior }: PriceDisplayProps) {
   // Determinar tipo de cambio según producto - leer desde metadata
   const tipoCambio: ExchangeRateType = pricingConfig?.currency_type === "usd_blue" ? "blue" : "oficial";
 
@@ -174,16 +176,21 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
         <div className="space-y-0">
           {/* Precio estilo MercadoLibre */}
           <div className="pb-5">
-            {/* Precio anterior tachado */}
-            <div className="mb-2">
-              <span className="text-[16px] font-normal" style={{
-                color: 'rgba(0, 0, 0, 0.55)',
-                textDecoration: 'line-through',
-                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
-              }}>
-                ${formatPriceNumber(Math.round(data.escenarios.publico.con_iva * 1.42))}
-              </span>
-            </div>
+            {/* Precio anterior tachado - solo si hay descuento */}
+            {descuentoPorcentaje && descuentoPorcentaje > 0 && (
+              <div className="mb-2">
+                <span className="text-[16px] font-normal" style={{
+                  color: 'rgba(0, 0, 0, 0.55)',
+                  textDecoration: 'line-through',
+                  fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif'
+                }}>
+                  ${formatPriceNumber(precioAnterior
+                    ? Math.round(precioAnterior)
+                    : Math.round(data.escenarios.publico.con_iva / (1 - descuentoPorcentaje / 100))
+                  )}
+                </span>
+              </div>
+            )}
 
             {/* Precio principal */}
             <div className="flex items-baseline gap-2 mb-2">
@@ -194,13 +201,16 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
               }}>
                 ${formatPriceNumber(data.escenarios.publico.con_iva)}
               </span>
-              <span className="text-[18px] font-normal" style={{
-                color: 'rgb(76, 175, 80)',
-                fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
-                fontWeight: 400
-              }}>
-                42% OFF
-              </span>
+              {/* Descuento - solo si existe */}
+              {descuentoPorcentaje && descuentoPorcentaje > 0 && (
+                <span className="text-[18px] font-normal" style={{
+                  color: 'rgb(76, 175, 80)',
+                  fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
+                  fontWeight: 400
+                }}>
+                  {descuentoPorcentaje}% OFF
+                </span>
+              )}
             </div>
 
             <p className="text-xs" style={{ color: 'rgba(0, 0, 0, 0.55)' }}>

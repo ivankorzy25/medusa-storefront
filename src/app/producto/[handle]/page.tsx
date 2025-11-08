@@ -50,6 +50,9 @@ async function getProductByHandle(handle: string) {
       rpm_motor: product.metadata?.motor_rpm ? Number(product.metadata.motor_rpm) : undefined,
       // Pricing config
       pricing_config: product.metadata?.pricing_config as any | undefined,
+      // Promotional discount
+      descuento_porcentaje: product.metadata?.descuento_porcentaje ? Number(product.metadata.descuento_porcentaje) : undefined,
+      precio_anterior: product.metadata?.precio_anterior ? Number(product.metadata.precio_anterior) : undefined,
     },
     images: (product.images || []).map((img: any, index: number) => ({
       id: img.id || String(index),
@@ -255,14 +258,17 @@ export default async function ProductPage({
                   }}>
                     MÁS VENDIDO
                   </span>
-                  <span className="text-[12px] font-semibold px-2 py-1 rounded" style={{
-                    color: 'rgb(255, 255, 255)',
-                    backgroundColor: '#3483FA',
-                    fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
-                    fontWeight: 600
-                  }}>
-                    OFERTA DEL DÍA
-                  </span>
+                  {/* Badge OFERTA - solo si hay descuento */}
+                  {product.metadata.descuento_porcentaje && product.metadata.descuento_porcentaje > 0 && (
+                    <span className="text-[12px] font-semibold px-2 py-1 rounded" style={{
+                      color: 'rgb(255, 255, 255)',
+                      backgroundColor: '#3483FA',
+                      fontFamily: '"Proxima Nova", -apple-system, Roboto, Arial, sans-serif',
+                      fontWeight: 600
+                    }}>
+                      OFERTA DEL DÍA
+                    </span>
+                  )}
                 </div>
 
                 <div>
@@ -385,6 +391,8 @@ export default async function ProductPage({
                 productId={product.id}
                 priceUSD={product.priceWithoutTax}
                 pricingConfig={product.metadata.pricing_config}
+                descuentoPorcentaje={product.metadata.descuento_porcentaje}
+                precioAnterior={product.metadata.precio_anterior}
               />
             }
           />
