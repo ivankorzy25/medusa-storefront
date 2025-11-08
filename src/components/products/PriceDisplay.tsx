@@ -163,7 +163,7 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
   }
 
   return (
-    <div className="space-y-4 max-w-full overflow-hidden">
+    <div className="w-full max-w-full">
       {/* Precio Final */}
       {isLoading ? (
         <div className="bg-gray-50 rounded p-6 text-center">
@@ -171,59 +171,59 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
           <p className="text-gray-600 text-sm">Calculando precio...</p>
         </div>
       ) : data ? (
-        <div className="space-y-4">
+        <div className="space-y-0">
           {/* Precio Público (Principal) */}
-          <div className="text-center">
-            <p className="text-xs text-gray-600 mb-2">Precio Público Lista</p>
-            <div className="flex items-center justify-center gap-1">
+          <div className="text-center pb-4">
+            <p className="text-xs text-gray-600 mb-1">Precio Público Lista</p>
+            <div className="flex items-center justify-center gap-1 my-2">
               <span className="text-3xl text-gray-700">$</span>
-              <p className="text-4xl font-normal text-[#333333] leading-tight">
+              <p className="text-[2.5rem] font-normal text-[#333333] leading-none">
                 {formatPriceNumber(data.escenarios.publico.con_iva)}
               </p>
             </div>
-            <p className="text-sm text-gray-600 mt-2">
+            <p className="text-xs text-gray-500">
               {formatUSD(precioListaUSD)} + IVA {ivaPorcentaje}%
             </p>
           </div>
 
           {/* Stock */}
-          <div className="pt-4 border-t border-gray-200 text-center">
-            <p className="text-sm text-gray-900 font-medium">Stock disponible</p>
-            <p className="text-sm text-gray-600 mt-1">Cantidad: 1 unidad</p>
+          <div className="py-4 border-t border-gray-200 text-center">
+            <p className="text-sm text-gray-900 font-medium mb-1">Stock disponible</p>
+            <p className="text-sm text-gray-600">Cantidad: 1 unidad</p>
           </div>
 
           {/* Botón CTA */}
-          <div className="flex justify-center">
-            <button className="w-full bg-[#3483FA] hover:bg-[#2968C8] text-white font-semibold py-3 px-4 rounded transition-colors text-sm">
+          <div className="py-4 border-t border-gray-200">
+            <button className="w-full bg-[#3483FA] hover:bg-[#2968C8] text-white font-semibold py-3 px-4 rounded-md transition-colors text-base">
               Consultar ahora
             </button>
           </div>
 
           {/* Información adicional */}
-          <div className="space-y-3 pt-4 border-t border-gray-200 text-center">
+          <div className="pt-4 border-t border-gray-200 text-center space-y-4">
             <div>
-              <p className="text-sm text-gray-900 font-medium mb-1">Entrega a acordar con el vendedor</p>
-              <p className="text-sm text-gray-600">Florida, Buenos Aires</p>
+              <p className="text-sm text-gray-900 font-medium">Entrega a acordar con el vendedor</p>
+              <p className="text-sm text-gray-600 mt-0.5">Florida, Buenos Aires</p>
             </div>
 
             <div>
-              <p className="text-sm text-gray-900 font-medium mb-1">Cotización de referencia</p>
-              <p className="text-sm text-gray-600">{selectedRateLabel.label}: ${selectedRateData?.venta.toFixed(2)}</p>
+              <p className="text-sm text-gray-900 font-medium">Cotización de referencia</p>
+              <p className="text-sm text-gray-600 mt-0.5">{selectedRateLabel.label}: ${selectedRateData?.venta.toFixed(2)}</p>
             </div>
 
             {pricingConfig?.familia && (
               <div>
-                <p className="text-sm text-gray-900 font-medium mb-1">Familia de Producto</p>
-                <p className="text-sm text-gray-600">{pricingConfig.familia}</p>
+                <p className="text-sm text-gray-900 font-medium">Familia de Producto</p>
+                <p className="text-sm text-gray-600 mt-0.5">{pricingConfig.familia}</p>
               </div>
             )}
           </div>
 
           {/* Botón Ver Detalles */}
-          <div className="flex justify-center">
+          <div className="pt-4 border-t border-gray-200 flex justify-center">
             <button
               onClick={() => setShowDetails(!showDetails)}
-              className="text-blue-600 hover:text-blue-700 py-2 text-sm font-medium flex items-center gap-2 transition-colors"
+              className="text-blue-600 hover:text-blue-700 py-2 text-sm font-medium flex items-center gap-1 transition-colors"
             >
               {showDetails ? "Ver menos información del precio" : "Ver más información del precio"}
               <ChevronDown className={`w-4 h-4 transition-transform ${showDetails ? "rotate-180" : ""}`} />
