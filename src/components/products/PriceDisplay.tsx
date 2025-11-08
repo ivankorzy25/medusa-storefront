@@ -173,10 +173,10 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
       ) : data ? (
         <div className="space-y-4">
           {/* Precio Público (Principal) */}
-          <div>
-            <p className="text-xs text-gray-600 mb-1">Precio Público Lista</p>
-            <div className="flex items-start gap-2">
-              <span className="text-3xl text-gray-700 mt-1">$</span>
+          <div className="text-center">
+            <p className="text-xs text-gray-600 mb-2">Precio Público Lista</p>
+            <div className="flex items-center justify-center gap-1">
+              <span className="text-3xl text-gray-700">$</span>
               <p className="text-4xl font-normal text-[#333333] leading-tight">
                 {formatPriceNumber(data.escenarios.publico.con_iva)}
               </p>
@@ -186,22 +186,21 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
             </p>
           </div>
 
-
           {/* Stock */}
-          <div className="pt-4 border-t border-gray-200">
+          <div className="pt-4 border-t border-gray-200 text-center">
             <p className="text-sm text-gray-900 font-medium">Stock disponible</p>
             <p className="text-sm text-gray-600 mt-1">Cantidad: 1 unidad</p>
           </div>
 
           {/* Botón CTA */}
-          <div className="flex justify-start">
-            <button className="w-[77%] bg-[#3483FA] hover:bg-[#2968C8] text-white font-semibold py-2 px-3 rounded transition-colors text-sm text-center">
+          <div className="flex justify-center">
+            <button className="w-full bg-[#3483FA] hover:bg-[#2968C8] text-white font-semibold py-3 px-4 rounded transition-colors text-sm">
               Consultar ahora
             </button>
           </div>
 
           {/* Información adicional */}
-          <div className="space-y-3 pt-4 border-t border-gray-200">
+          <div className="space-y-3 pt-4 border-t border-gray-200 text-center">
             <div>
               <p className="text-sm text-gray-900 font-medium mb-1">Entrega a acordar con el vendedor</p>
               <p className="text-sm text-gray-600">Florida, Buenos Aires</p>
@@ -221,7 +220,7 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
           </div>
 
           {/* Botón Ver Detalles */}
-          <div className="flex justify-start">
+          <div className="flex justify-center">
             <button
               onClick={() => setShowDetails(!showDetails)}
               className="text-blue-600 hover:text-blue-700 py-2 text-sm font-medium flex items-center gap-2 transition-colors"
@@ -233,7 +232,7 @@ export function PriceDisplay({ productId, priceUSD, pricingConfig }: PriceDispla
 
           {/* Panel de Detalles Expandible */}
           {showDetails && (
-            <div className="bg-gray-50 rounded-lg p-2 space-y-2 w-[85%] overflow-hidden">
+            <div className="bg-gray-50 rounded-lg p-3 space-y-3 w-full overflow-hidden">
               <div className="space-y-2">
                 <h3 className="text-sm font-bold text-gray-900">Desglose del precio (Público)</h3>
 
